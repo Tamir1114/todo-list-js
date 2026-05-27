@@ -1,0 +1,257 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f0f0f0;
+  color: #222;
+  padding: 40px 16px;
+}
+
+.container {
+  max-width: 520px;
+  margin: 0 auto;
+  background: #fff;
+  border-radius: 8px;
+  padding: 32px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+}
+
+h1 {
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #111;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #777;
+  margin-bottom: 24px;
+}
+
+/* Input row */
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+#todo-input {
+  flex: 1;
+  padding: 10px 14px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+#todo-input:focus {
+  border-color: #3a7bd5;
+}
+
+.input-row button {
+  padding: 10px 20px;
+  background-color: #3a7bd5;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.input-row button:hover {
+  background-color: #2f65b8;
+}
+
+/* Filter row */
+.filter-row {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 14px;
+}
+
+.filter-btn {
+  padding: 5px 14px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  background: #fff;
+  font-size: 13px;
+  font-family: inherit;
+  color: #555;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.filter-btn:hover {
+  border-color: #3a7bd5;
+  color: #3a7bd5;
+}
+
+.filter-btn.active {
+  background-color: #3a7bd5;
+  border-color: #3a7bd5;
+  color: #fff;
+}
+
+/* Stats */
+.stats {
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 16px;
+}
+
+/* List */
+#todo-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Todo item */
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid #e0e0e0;
+  border-radius: 6px;
+  background: #fff;
+  transition: background 0.15s;
+}
+
+.todo-item.done {
+  background: #fafafa;
+  border-color: #ebebeb;
+}
+
+/* Checkbox button */
+.check-btn {
+  width: 20px;
+  height: 20px;
+  flex-shrink: 0;
+  border: 2px solid #bbb;
+  border-radius: 4px;
+  background: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s;
+}
+
+.check-btn:hover {
+  border-color: #3a7bd5;
+}
+
+.todo-item.done .check-btn {
+  background-color: #3a7bd5;
+  border-color: #3a7bd5;
+}
+
+/* Task text */
+.todo-text {
+  flex: 1;
+  font-size: 14px;
+  line-height: 1.4;
+  color: #222;
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: #aaa;
+}
+
+/* Edit input */
+.edit-input {
+  flex: 1;
+  padding: 3px 8px;
+  font-size: 14px;
+  font-family: inherit;
+  border: 1px solid #3a7bd5;
+  border-radius: 4px;
+  outline: none;
+}
+
+/* Action buttons */
+.item-actions {
+  display: flex;
+  gap: 4px;
+  opacity: 0;
+  transition: opacity 0.15s;
+}
+
+.todo-item:hover .item-actions {
+  opacity: 1;
+}
+
+.action-btn {
+  padding: 3px 9px;
+  font-size: 12px;
+  font-family: inherit;
+  border-radius: 4px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  color: #555;
+  transition: all 0.15s;
+}
+
+.action-btn:hover {
+  background: #f0f0f0;
+}
+
+.action-btn.delete-btn:hover {
+  background: #fdecea;
+  border-color: #e57373;
+  color: #c62828;
+}
+
+/* Empty message */
+.empty-msg {
+  text-align: center;
+  padding: 36px 0;
+  font-size: 14px;
+  color: #aaa;
+}
+
+.hidden {
+  display: none;
+}
+
+/* Bottom row */
+.bottom-row {
+  margin-top: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.clear-btn {
+  padding: 6px 14px;
+  font-size: 13px;
+  font-family: inherit;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background: #fff;
+  color: #888;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.clear-btn:hover {
+  border-color: #e57373;
+  color: #c62828;
+  background: #fdecea;
+}

@@ -1,4 +1,4 @@
-# todo-list-js
+# Todo List
 
 A simple interactive Todo List web application built with HTML, CSS, and JavaScript.
 No frameworks or libraries were used — just plain vanilla JavaScript.
@@ -39,13 +39,17 @@ Tasks are saved permanently in the browser so they remain after a page refresh.
 
 ## File Structure
 
+```
 todo-list-js/
   index.html   - Page structure and layout
-  style.css    - Style and design
+  style.css    - Styling and visual design
   script.js    - All JavaScript logic
   README.md    - Project description
+```
 
+---
 
 ## How to Run
 
 Download or clone the repository, then open index.html in a browser.
+No installation or setup required.
