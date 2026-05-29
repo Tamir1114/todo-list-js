@@ -6,8 +6,8 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #f0fdf4;
-  color: #1a1a1a;
+  background: linear-gradient(135deg, #ecfdf5, #f0fdf4);
+  color: #0f172a;
   padding: 40px 16px;
 }
 
@@ -15,16 +15,18 @@ body {
   max-width: 520px;
   margin: 0 auto;
   background: #ffffff;
-  border-radius: 10px;
+  border-radius: 14px;
   padding: 32px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border: 1px solid #d1fae5;
 }
 
 h1 {
   font-size: 26px;
-  font-weight: 700;
+  font-weight: 800;
   margin-bottom: 6px;
-  color: #14532d;
+  color: #064e3b;
+  letter-spacing: -0.5px;
 }
 
 .subtitle {
@@ -41,34 +43,36 @@ h1 {
 
 #todo-input {
   flex: 1;
-  padding: 10px 14px;
-  border: 1px solid #bbf7d0;
-  border-radius: 6px;
+  padding: 11px 14px;
+  border: 1px solid #a7f3d0;
+  border-radius: 8px;
   font-size: 14px;
   font-family: inherit;
   outline: none;
-  transition: border-color 0.2s;
+  transition: all 0.2s;
+  background: #f9fffb;
 }
 
 #todo-input:focus {
-  border-color: #16a34a;
+  border-color: #10b981;
+  box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15);
 }
 
 .input-row button {
   padding: 10px 20px;
-  background-color: #16a34a;
+  background: linear-gradient(135deg, #10b981, #059669);
   color: #fff;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
   font-size: 14px;
-  font-family: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: transform 0.15s, box-shadow 0.15s;
 }
 
 .input-row button:hover {
-  background-color: #15803d;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 14px rgba(16, 185, 129, 0.25);
 }
 
 .filter-row {
@@ -78,25 +82,25 @@ h1 {
 }
 
 .filter-btn {
-  padding: 5px 14px;
-  border: 1px solid #bbf7d0;
-  border-radius: 20px;
+  padding: 6px 14px;
+  border: 1px solid #a7f3d0;
+  border-radius: 999px;
   background: #ffffff;
   font-size: 13px;
-  font-family: inherit;
-  color: #16a34a;
+  color: #059669;
   cursor: pointer;
-  transition: all 0.15s;
+  transition: all 0.2s;
 }
 
 .filter-btn:hover {
-  border-color: #16a34a;
-  color: #15803d;
+  background: #ecfdf5;
+  border-color: #10b981;
+  color: #047857;
 }
 
 .filter-btn.active {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background: #10b981;
+  border-color: #10b981;
   color: #ffffff;
 }
 
@@ -117,29 +121,31 @@ h1 {
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
-  border: 1px solid #bbf7d0;
-  border-radius: 6px;
+  padding: 11px 12px;
+  border: 1px solid #d1fae5;
+  border-radius: 10px;
   background: #ffffff;
-  transition: background 0.15s;
+  transition: all 0.15s;
+}
+
+.todo-item:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .todo-item.done {
-  background: #dcfce7;
-  border-color: #bbf7d0;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
 }
 
 .check-btn {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  border: 2px solid #16a34a;
-  border-radius: 4px;
+  border: 2px solid #10b981;
+  border-radius: 5px;
   background: #ffffff;
   cursor: pointer;
-  font-size: 12px;
-  font-weight: bold;
-  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -147,19 +153,19 @@ h1 {
 }
 
 .check-btn:hover {
-  border-color: #15803d;
+  border-color: #059669;
+  background: #ecfdf5;
 }
 
 .todo-item.done .check-btn {
-  background-color: #16a34a;
-  border-color: #16a34a;
+  background: #10b981;
+  border-color: #10b981;
 }
 
 .todo-text {
   flex: 1;
   font-size: 14px;
-  line-height: 1.4;
-  color: #111827;
+  color: #0f172a;
 }
 
 .todo-item.done .todo-text {
@@ -169,11 +175,9 @@ h1 {
 
 .edit-input {
   flex: 1;
-  padding: 3px 8px;
-  font-size: 14px;
-  font-family: inherit;
-  border: 1px solid #16a34a;
-  border-radius: 4px;
+  padding: 4px 8px;
+  border: 1px solid #10b981;
+  border-radius: 6px;
   outline: none;
 }
 
@@ -191,9 +195,8 @@ h1 {
 .action-btn {
   padding: 3px 9px;
   font-size: 12px;
-  font-family: inherit;
-  border-radius: 4px;
-  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  border: 1px solid #e2e8f0;
   background: #ffffff;
   cursor: pointer;
   color: #334155;
@@ -201,7 +204,8 @@ h1 {
 }
 
 .action-btn:hover {
-  background: #dcfce7;
+  background: #ecfdf5;
+  border-color: #a7f3d0;
 }
 
 .action-btn.delete-btn:hover {
@@ -228,11 +232,10 @@ h1 {
 }
 
 .clear-btn {
-  padding: 6px 14px;
+  padding: 7px 14px;
   font-size: 13px;
-  font-family: inherit;
-  border: 1px solid #cbd5e1;
-  border-radius: 6px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
   background: #ffffff;
   color: #64748b;
   cursor: pointer;
