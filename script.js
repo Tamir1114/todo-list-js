@@ -1,162 +1,128 @@
-
-var todos = [];
-var currentFilter = 'all';
-
+let todos = [];
+let currentFilter = 'all';
 
 function loadTodos() {
-  var saved = localStorage.getItem('todos');
-  if (saved) {
-    todos = JSON.parse(saved);
-  }
+  const saved = localStorage.getItem('todos');
+  todos = saved ? JSON.parse(saved) : [];
 }
-
 
 function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-
 function addTodo() {
-  var input = document.querySelector('#todo-input');
-  var text = input.value.trim();
+  const input = document.querySelector('#todo-input');
+  const text = input.value.trim();
 
-  if (text === '') {
+  if (!text) {
     input.focus();
     return;
   }
 
-  var newTodo = {
+  todos.push({
     id: Date.now(),
-    text: text,
+    text,
     done: false
-  };
-
-  todos.push(newTodo);
-  saveTodos();
+  });
 
   input.value = '';
   input.focus();
+
+  saveTodos();
   render();
 }
-
 
 function handleKeyDown(event) {
-  if (event.key === 'Enter') {
-    addTodo();
-  }
+  if (event.key === 'Enter') addTodo();
 }
-
 
 function toggleTodo(id) {
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) {
-      todos[i].done = !todos[i].done;
-      break;
-    }
-  }
+  todos = todos.map(todo =>
+    todo.id === id ? { ...todo, done: !todo.done } : todo
+  );
+
   saveTodos();
   render();
 }
-
 
 function deleteTodo(id) {
-  todos = todos.filter(function(todo) {
-    return todo.id !== id;
-  });
+  todos = todos.filter(todo => todo.id !== id);
+
   saveTodos();
   render();
 }
-
 
 function startEdit(id) {
-  var textEl = document.querySelector('#text-' + id);
-  if (!textEl) return;
+  const textEl = document.querySelector(`#text-${id}`);
+  const todo = todos.find(t => t.id === id);
+  if (!textEl || !todo) return;
 
-  var todo = null;
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) {
-      todo = todos[i];
-      break;
-    }
-  }
-  if (!todo) return;
+  const input = document.createElement('input');
+  input.type = 'text';
+  input.className = 'edit-input';
+  input.value = todo.text;
+  input.id = `edit-input-${id}`;
 
-  var editInput = document.createElement('input');
-  editInput.type = 'text';
-  editInput.className = 'edit-input';
-  editInput.value = todo.text;
-  editInput.id = 'edit-input-' + id;
-
-  editInput.onkeydown = function(e) {
+  input.addEventListener('keydown', (e) => {
     if (e.key === 'Enter') saveEdit(id);
     if (e.key === 'Escape') render();
-  };
+  });
 
-  textEl.replaceWith(editInput);
-  editInput.focus();
-  editInput.select();
+  textEl.replaceWith(input);
+  input.focus();
+  input.select();
 
-  var editBtn = document.querySelector('#edit-btn-' + id);
+  const editBtn = document.querySelector(`#edit-btn-${id}`);
   if (editBtn) {
     editBtn.textContent = 'Save';
-    editBtn.onclick = function() { saveEdit(id); };
+    editBtn.onclick = () => saveEdit(id);
   }
 }
-
 
 function saveEdit(id) {
-  var editInput = document.querySelector('#edit-input-' + id);
-  if (!editInput) return;
+  const input = document.querySelector(`#edit-input-${id}`);
+  if (!input) return;
 
-  var newText = editInput.value.trim();
-  if (newText === '') return;
+  const newText = input.value.trim();
+  if (!newText) return;
 
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].id === id) {
-      todos[i].text = newText;
-      break;
-    }
-  }
+  todos = todos.map(todo =>
+    todo.id === id ? { ...todo, text: newText } : todo
+  );
 
   saveTodos();
   render();
 }
-
 
 function clearCompleted() {
-  todos = todos.filter(function(todo) {
-    return !todo.done;
-  });
+  todos = todos.filter(todo => !todo.done);
+
   saveTodos();
   render();
 }
-
 
 function setFilter(filter, btn) {
   currentFilter = filter;
 
-  var buttons = document.querySelectorAll('.filter-btn');
-  for (var i = 0; i < buttons.length; i++) {
-    buttons[i].classList.remove('active');
-  }
+  document.querySelectorAll('.filter-btn')
+    .forEach(b => b.classList.remove('active'));
+
   btn.classList.add('active');
 
   render();
 }
 
+function getFilteredTodos() {
+  if (currentFilter === 'active') return todos.filter(t => !t.done);
+  if (currentFilter === 'done') return todos.filter(t => t.done);
+  return todos;
+}
+
 function render() {
-  var filtered = [];
+  const listEl = document.querySelector('#todo-list');
+  const emptyEl = document.querySelector('#empty-msg');
 
-  if (currentFilter === 'all') {
-    filtered = todos;
-  } else if (currentFilter === 'active') {
-    filtered = todos.filter(function(t) { return !t.done; });
-  } else if (currentFilter === 'done') {
-    filtered = todos.filter(function(t) { return t.done; });
-  }
-
-  var listEl  = document.querySelector('#todo-list');
-  var emptyEl = document.querySelector('#empty-msg');
+  const filtered = getFilteredTodos();
 
   if (filtered.length === 0) {
     listEl.innerHTML = '';
@@ -164,41 +130,39 @@ function render() {
   } else {
     emptyEl.classList.add('hidden');
 
-    var html = '';
-    for (var i = 0; i < filtered.length; i++) {
-      var todo = filtered[i];
-      var doneClass = todo.done ? 'done' : '';
-      var checkMark = todo.done ? 'v' : '';
+    listEl.innerHTML = filtered.map(todo => `
+      <li class="todo-item ${todo.done ? 'done' : ''}" id="item-${todo.id}">
+        <button class="check-btn" onclick="toggleTodo(${todo.id})">
+          ${todo.done ? '✓' : ''}
+        </button>
 
-      html += '<li class="todo-item ' + doneClass + '" id="item-' + todo.id + '">';
-      html += '<button class="check-btn" onclick="toggleTodo(' + todo.id + ')">' + checkMark + '</button>';
-      html += '<span class="todo-text" id="text-' + todo.id + '">' + escapeHTML(todo.text) + '</span>';
-      html += '<div class="item-actions">';
-      html += '<button class="action-btn" id="edit-btn-' + todo.id + '" onclick="startEdit(' + todo.id + ')">Edit</button>';
-      html += '<button class="action-btn delete-btn" onclick="deleteTodo(' + todo.id + ')">Delete</button>';
-      html += '</div>';
-      html += '</li>';
-    }
+        <span class="todo-text" id="text-${todo.id}">
+          ${escapeHTML(todo.text)}
+        </span>
 
-    listEl.innerHTML = html;
+        <div class="item-actions">
+          <button class="action-btn" id="edit-btn-${todo.id}" onclick="startEdit(${todo.id})">
+            Edit
+          </button>
+          <button class="action-btn delete-btn" onclick="deleteTodo(${todo.id})">
+            Delete
+          </button>
+        </div>
+      </li>
+    `).join('');
   }
 
   updateStats();
 }
 
-
 function updateStats() {
-  var total = todos.length;
-  var done  = 0;
-  for (var i = 0; i < todos.length; i++) {
-    if (todos[i].done) done++;
-  }
-  var left = total - done;
+  const total = todos.length;
+  const done = todos.filter(t => t.done).length;
+  const left = total - done;
 
-  var statsEl = document.querySelector('#stats');
-  statsEl.textContent = total + ' total  |  ' + done + ' done  |  ' + left + ' remaining';
+  document.querySelector('#stats').textContent =
+    `${total} total | ${done} done | ${left} remaining`;
 }
-
 
 function escapeHTML(str) {
   return str
