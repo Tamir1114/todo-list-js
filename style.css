@@ -6,7 +6,7 @@
 
 body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  background-color: #e9f2ff;
+  background-color: #f0fdf4;
   color: #1a1a1a;
   padding: 40px 16px;
 }
@@ -24,7 +24,7 @@ h1 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 6px;
-  color: #0f172a;
+  color: #14532d;
 }
 
 .subtitle {
@@ -42,7 +42,7 @@ h1 {
 #todo-input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid #93c5fd;
+  border: 1px solid #bbf7d0;
   border-radius: 6px;
   font-size: 14px;
   font-family: inherit;
@@ -51,12 +51,12 @@ h1 {
 }
 
 #todo-input:focus {
-  border-color: #2563eb;
+  border-color: #16a34a;
 }
 
 .input-row button {
   padding: 10px 20px;
-  background-color: #2563eb;
+  background-color: #16a34a;
   color: #fff;
   border: none;
   border-radius: 6px;
@@ -68,7 +68,7 @@ h1 {
 }
 
 .input-row button:hover {
-  background-color: #1d4ed8;
+  background-color: #15803d;
 }
 
 .filter-row {
@@ -79,24 +79,24 @@ h1 {
 
 .filter-btn {
   padding: 5px 14px;
-  border: 1px solid #93c5fd;
+  border: 1px solid #bbf7d0;
   border-radius: 20px;
   background: #ffffff;
   font-size: 13px;
   font-family: inherit;
-  color: #2563eb;
+  color: #16a34a;
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .filter-btn:hover {
-  border-color: #2563eb;
-  color: #1d4ed8;
+  border-color: #16a34a;
+  color: #15803d;
 }
 
 .filter-btn.active {
-  background-color: #2563eb;
-  border-color: #2563eb;
+  background-color: #16a34a;
+  border-color: #16a34a;
   color: #ffffff;
 }
 
@@ -118,22 +118,22 @@ h1 {
   align-items: center;
   gap: 10px;
   padding: 10px 12px;
-  border: 1px solid #c7d2fe;
+  border: 1px solid #bbf7d0;
   border-radius: 6px;
   background: #ffffff;
   transition: background 0.15s;
 }
 
 .todo-item.done {
-  background: #eef2ff;
-  border-color: #c7d2fe;
+  background: #dcfce7;
+  border-color: #bbf7d0;
 }
 
 .check-btn {
   width: 20px;
   height: 20px;
   flex-shrink: 0;
-  border: 2px solid #6366f1;
+  border: 2px solid #16a34a;
   border-radius: 4px;
   background: #ffffff;
   cursor: pointer;
@@ -147,12 +147,12 @@ h1 {
 }
 
 .check-btn:hover {
-  border-color: #4f46e5;
+  border-color: #15803d;
 }
 
 .todo-item.done .check-btn {
-  background-color: #4f46e5;
-  border-color: #4f46e5;
+  background-color: #16a34a;
+  border-color: #16a34a;
 }
 
 .todo-text {
@@ -172,7 +172,7 @@ h1 {
   padding: 3px 8px;
   font-size: 14px;
   font-family: inherit;
-  border: 1px solid #4f46e5;
+  border: 1px solid #16a34a;
   border-radius: 4px;
   outline: none;
 }
@@ -201,12 +201,12 @@ h1 {
 }
 
 .action-btn:hover {
-  background: #e0e7ff;
+  background: #dcfce7;
 }
 
 .action-btn.delete-btn:hover {
   background: #fee2e2;
-  border-color: #f87171;
+  border-color: #ef4444;
   color: #dc2626;
 }
 
@@ -240,7 +240,7 @@ h1 {
 }
 
 .clear-btn:hover {
-  border-color: #f87171;
+  border-color: #ef4444;
   color: #dc2626;
   background: #fee2e2;
 }
