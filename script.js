@@ -1,9 +1,8 @@
-// Todo List - script.js
 
 var todos = [];
 var currentFilter = 'all';
 
-// Load saved data from localStorage when page opens
+
 function loadTodos() {
   var saved = localStorage.getItem('todos');
   if (saved) {
@@ -11,12 +10,12 @@ function loadTodos() {
   }
 }
 
-// Save current todos array to localStorage
+
 function saveTodos() {
   localStorage.setItem('todos', JSON.stringify(todos));
 }
 
-// Add a new todo when the Add button is clicked
+
 function addTodo() {
   var input = document.querySelector('#todo-input');
   var text = input.value.trim();
@@ -40,14 +39,14 @@ function addTodo() {
   render();
 }
 
-// Triggered by onkeydown — adds todo when Enter is pressed
+
 function handleKeyDown(event) {
   if (event.key === 'Enter') {
     addTodo();
   }
 }
 
-// Toggle a todo between done and not done
+
 function toggleTodo(id) {
   for (var i = 0; i < todos.length; i++) {
     if (todos[i].id === id) {
@@ -59,7 +58,7 @@ function toggleTodo(id) {
   render();
 }
 
-// Delete a todo by id
+
 function deleteTodo(id) {
   todos = todos.filter(function(todo) {
     return todo.id !== id;
@@ -68,7 +67,7 @@ function deleteTodo(id) {
   render();
 }
 
-// Show an editable input field for a todo
+
 function startEdit(id) {
   var textEl = document.querySelector('#text-' + id);
   if (!textEl) return;
@@ -104,7 +103,7 @@ function startEdit(id) {
   }
 }
 
-// Save the edited text
+
 function saveEdit(id) {
   var editInput = document.querySelector('#edit-input-' + id);
   if (!editInput) return;
@@ -123,7 +122,7 @@ function saveEdit(id) {
   render();
 }
 
-// Remove all completed todos
+
 function clearCompleted() {
   todos = todos.filter(function(todo) {
     return !todo.done;
@@ -132,7 +131,7 @@ function clearCompleted() {
   render();
 }
 
-// Switch between All / Active / Done filter
+
 function setFilter(filter, btn) {
   currentFilter = filter;
 
@@ -145,7 +144,6 @@ function setFilter(filter, btn) {
   render();
 }
 
-// Build and display the todo list using innerHTML
 function render() {
   var filtered = [];
 
@@ -188,7 +186,7 @@ function render() {
   updateStats();
 }
 
-// Update the stats text at the top
+
 function updateStats() {
   var total = todos.length;
   var done  = 0;
@@ -201,7 +199,7 @@ function updateStats() {
   statsEl.textContent = total + ' total  |  ' + done + ' done  |  ' + left + ' remaining';
 }
 
-// Prevent user input from breaking the HTML
+
 function escapeHTML(str) {
   return str
     .replace(/&/g, '&amp;')
@@ -210,6 +208,5 @@ function escapeHTML(str) {
     .replace(/"/g, '&quot;');
 }
 
-// Run on page load
 loadTodos();
 render();
