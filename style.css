@@ -33,7 +33,7 @@ h1 {
   margin-bottom: 24px;
 }
 
-/* Input row */
+
 .input-row {
   display: flex;
   gap: 8px;
@@ -72,7 +72,7 @@ h1 {
   background-color: #2f65b8;
 }
 
-/* Filter row */
+
 .filter-row {
   display: flex;
   gap: 6px;
@@ -102,14 +102,13 @@ h1 {
   color: #fff;
 }
 
-/* Stats */
 .stats {
   font-size: 13px;
   color: #888;
   margin-bottom: 16px;
 }
 
-/* List */
+
 #todo-list {
   list-style: none;
   display: flex;
@@ -117,7 +116,7 @@ h1 {
   gap: 8px;
 }
 
-/* Todo item */
+
 .todo-item {
   display: flex;
   align-items: center;
@@ -134,7 +133,7 @@ h1 {
   border-color: #ebebeb;
 }
 
-/* Checkbox button */
+
 .check-btn {
   width: 20px;
   height: 20px;
